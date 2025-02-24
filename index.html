@@ -178,3 +178,35 @@
                 <option value="multiplication">Multiplication 🍇</option>
                 <option value="division">Division 🍉</option>
             </select>
+ <!-- Level selection -->
+            <label for="level-input">Choose Level (1-5):</label>
+            <input type="number" id="level-input" min="1" max="5" value="1">
+
+            <!-- Start button -->
+            <button id="start-button">Start</button>
+        </div>
+
+        <!-- Question area (hidden initially) -->
+        <div id="question-area" style="display: none;">
+            <div id="level">Level: </div>
+            <div id="question"></div>
+            <input type="number" id="answer" placeholder="Your Answer" />
+            <button id="submit">Check Answer</button>
+            
+            <!-- Feedback and score display -->
+            <div id="feedback"></div>
+            <div id="score">Score: 0</div>
+            <div id="rating"></div>
+
+            <!-- Buttons to change operation or view correction -->
+            
+            <button id="show-correction" style="display: none;">Show Correction</button>
+        </div>
+		<!-- Go Back button -->
+<button id="go-back-button" style="display: none;">Go Back</button>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
