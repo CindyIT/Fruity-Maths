@@ -45,3 +45,90 @@ input[type="number"]:focus {
     outline: none;
     background-color: #fff0e1; /* Soft yellow background */
 }
+/* Styling for buttons */
+button {
+    padding: 12px 25px;
+    background-color: #ff6347;
+    color: white;
+    font-size: 1.3em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 10px 0; /* Space between buttons */
+}
+
+button:hover {
+    background-color: #ff4500; /* Darker shade on hover */
+}
+
+button:focus {
+    outline: none;
+}
+
+/* Feedback styles */
+#feedback {
+    font-size: 1.5em;
+    margin-top: 15px;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+#score {
+    font-size: 1.7em;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #32CD32; /* Green for positive feedback */
+}
+
+#rating {
+    font-size: 1.4em;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #ff6347;
+}
+
+/* Dropdown select styles */
+select {
+    padding: 10px;
+    font-size: 1.2em;
+    margin: 10px 0;
+    border: 2px solid #ffd700;
+    border-radius: 8px;
+    background-color: #fff0e1;
+    width: 80%;
+    transition: all 0.3s ease;
+}
+
+select:focus {
+    border-color: #ff6347;
+    outline: none;
+    background-color: #fff0e1;
+}
+
+/* Responsive Styles for mobile */
+@media (max-width: 600px) {
+    .container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 2em; /* Smaller heading on mobile */
+    }
+
+    input[type="number"], button, select {
+        font-size: 1.2em;
+        width: 90%;
+    }
+}
+
+/* Extra button for showing corrections */
+#show-correction {
+    background-color: #ffa07a; /* Light coral background */
+    margin-top: 10px;
+}
+
+#show-correction:hover {
+    background-color: #ff7f50; /* Hover effect for correction button */
+}
