@@ -135,3 +135,30 @@ select:focus {
 #show-correction:hover {
     background-color: #ff7f50; /* Hover effect for correction button */
 }
+// Assuming you have other existing code for handling the start button, question generation, etc.
+
+document.getElementById('start-button').addEventListener('click', function() {
+    // Hide the selection area
+    document.getElementById('selection-area').style.display = 'none';
+
+    // Show the question area
+    document.getElementById('question-area').style.display = 'block';
+
+    // Show the "Go Back" button
+    document.getElementById('go-back-button').style.display = 'block';
+});
+
+document.getElementById('go-back-button').addEventListener('click', function() {
+    // Hide the question area
+    document.getElementById('question-area').style.display = 'none';
+
+    // Show the selection area again
+    document.getElementById('selection-area').style.display = 'block';
+
+    // Hide the "Go Back" button
+    document.getElementById('go-back-button').style.display = 'none';
+
+    // Optional: Reset the level and math type
+    document.getElementById('level-input').value = 1; // Reset level to 1
+    document.getElementById('math-type').value = 'addition'; // Reset math type to addition
+});
