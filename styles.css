@@ -162,3 +162,9 @@ document.getElementById('go-back-button').addEventListener('click', function() {
     document.getElementById('level-input').value = 1; // Reset level to 1
     document.getElementById('math-type').value = 'addition'; // Reset math type to addition
 });
+/* Always show the correction button */
+#show-correction {
+    background-color: #ffa07a; /* Light coral background */
+    margin-top: 10px;
+    display: inline-block; /* Ensure it's always visible */
+}
