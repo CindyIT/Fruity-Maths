@@ -1,38 +1,40 @@
 let score = 0;
 let correctAnswer;
-let level = 1; 
+let level = 1; // Default level
 let voice = new SpeechSynthesisUtterance();
-let babyVoice = null; 
+let babyVoice = null; // Placeholder for baby voice
 
+// Set up baby voice (if available)
 function setBabyVoice() {
     const voices = window.speechSynthesis.getVoices();
     babyVoice = voices.find(voice => voice.name.toLowerCase().includes("child") || voice.name.toLowerCase().includes("baby"));
 
     if (!babyVoice) {
-       
+        // Fallback voice if no baby voice is available
         babyVoice = voices[0];
     }
     voice.voice = babyVoice;
 }
 
-
+// Get random number for generating questions
 function getRandomNumber(max) {
-    return Math.floor(Math.random() * max) + 1; 
+    return Math.floor(Math.random() * max) + 1; // Random number between 1 and max
 }
 
 function generateQuestion() {
     const mathType = document.getElementById('math-type').value;
-    let num1 = getRandomNumber(level * 10); 
+    let num1 = getRandomNumber(level * 10); // Increase range as level increases
     let num2 = getRandomNumber(level * 10);
     let questionText = '';
-	 switch (mathType) {
+    
+    switch (mathType) {
         case 'addition':
             correctAnswer = num1 + num2;
             questionText = `How many fruits are there if you have ${num1} apples 🍎 and ${num2} oranges 🍊?`;
             break;
         case 'subtraction':
             if (num1 < num2) {
-                [num1, num2] = [num2, num1]; 
+                [num1, num2] = [num2, num1]; // Ensure num1 is greater than num2
             }
             correctAnswer = num1 - num2;
             questionText = `You have ${num1} bananas 🍌. If you eat ${num2} bananas 🍌, how many do you have left?`;
@@ -42,9 +44,9 @@ function generateQuestion() {
             questionText = `You have ${num1} grapes 🍇, and you pick ${num2} bunches. How many grapes did you pick in total?`;
             break;
         case 'division':
-          
+            // Ensure num1 is divisible by num2 for a clean division
             num2 = getRandomNumber(level * 10);
-            correctAnswer = num1 * num2;
+            correctAnswer = num1 * num2; // Set correct answer to be num1 * num2 to ensure clean division
             questionText = `You have ${correctAnswer} watermelons 🍉, and you divide them equally between ${num2} people. How many watermelons does each person get?`;
             break;
         default:
@@ -56,11 +58,11 @@ function generateQuestion() {
     questionElement.textContent = questionText;
 }
 
-
+// Function to speak the text with the baby voice
 function speak(text) {
     voice.text = text;
     window.speechSynthesis.speak(voice);
-	}
+}
 
 document.getElementById('start-button').addEventListener('click', function() {
     // Set the baby voice when the game starts
@@ -165,3 +167,4 @@ document.getElementById('go-back-button').addEventListener('click', function() {
     // Hide the Go Back button
     document.getElementById('go-back-button').style.display = 'none';
 });
+

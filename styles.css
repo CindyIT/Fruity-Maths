@@ -7,7 +7,9 @@ body {
     padding: 20px;
     background-attachment: fixed; /* Parallax effect */
     margin: 0; /* Remove default margin */
-}/* Container for the main content */
+}
+
+/* Container for the main content */
 .container {
     background-color: rgba(255, 255, 255, 0.9); /* Slight transparency for soft effect */
     border-radius: 10px;
@@ -45,6 +47,7 @@ input[type="number"]:focus {
     outline: none;
     background-color: #fff0e1; /* Soft yellow background */
 }
+
 /* Styling for buttons */
 button {
     padding: 12px 25px;
