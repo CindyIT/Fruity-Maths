@@ -60,3 +60,108 @@ function generateQuestion() {
 function speak(text) {
     voice.text = text;
     window.speechSynthesis.speak(voice);
+	}
+
+document.getElementById('start-button').addEventListener('click', function() {
+    // Set the baby voice when the game starts
+    setBabyVoice();
+
+    // Get the level from input
+    level = parseInt(document.getElementById('level-input').value);
+    // Ensure level is between 1 and 5
+    level = Math.max(1, Math.min(level, 5));
+
+    // Hide the selection area and show the question area
+    document.getElementById('selection-area').style.display = 'none';
+    document.getElementById('question-area').style.display = 'block';
+
+    // Set the level in the UI
+    document.getElementById('level').textContent = `Level: ${level}`;
+    document.getElementById('score').textContent = `Score: ${score}`;
+
+    // Generate the first question after the user selects an operation
+    generateQuestion();
+
+    // Show the Go Back button now that we're in the question area
+    document.getElementById('go-back-button').style.display = 'inline-block';
+});
+
+document.getElementById('submit').addEventListener('click', function() {
+    const userAnswer = parseInt(document.getElementById('answer').value);
+    const feedbackElement = document.getElementById('feedback');
+    const ratingElement = document.getElementById('rating');
+    const showCorrectionButton = document.getElementById('show-correction');
+
+    if (userAnswer === correctAnswer) {
+        feedbackElement.textContent = "Correct! 🎉";
+        feedbackElement.style.color = "green";
+        score++;
+
+        // Speak congratulatory message
+        speak("Yay! Correct answer! Good job!");
+
+        // Level up after 5 correct answers
+        if (score % 5 === 0 && level < 5) { 
+            level++;
+            document.getElementById('level').textContent = `Level: ${level}`;
+        }
+
+        // Provide feedback based on score
+        if (score <= 5) {
+            ratingElement.textContent = "Great start! Keep going! 🚀";
+        } else if (score <= 10) {
+            ratingElement.textContent = "You're doing awesome! 👍";
+        } else if (score <= 15) {
+            ratingElement.textContent = "Fantastic! You’re a math superstar! 🌟";
+        } else {
+            ratingElement.textContent = "Congratulations, you're a math genius! 🎉🎉";
+        }
+
+        showCorrectionButton.style.display = "none"; // Hide correction button if the answer is right
+    } else {
+        feedbackElement.textContent = "Oops! Try again! 😅";
+        feedbackElement.style.color = "red";
+        ratingElement.textContent = "";
+
+        // Speak "Oops, wrong answer"
+        speak("Oops, wrong answer! Try again, okay?");
+
+        showCorrectionButton.style.display = "inline-block"; // Show the correction button
+    }
+
+    // Update score
+    document.getElementById('score').textContent = `Score: ${score}`;
+    
+    // Generate a new question
+    generateQuestion();
+    document.getElementById('answer').value = ''; // Clear the input field
+});
+
+// Show correct answer when "Show Correction" is clicked
+document.getElementById('show-correction').addEventListener('click', function() {
+    const feedbackElement = document.getElementById('feedback');
+    feedbackElement.textContent = `The correct answer was: ${correctAnswer} ✔️`;
+    feedbackElement.style.color = "blue";
+
+    // Speak the correct answer with the baby voice
+    speak(`The correct answer was: ${correctAnswer}!`);
+});
+
+// When the user clicks "Go Back", hide the question area and show the operation selection again
+document.getElementById('go-back-button').addEventListener('click', function() {
+    // Hide the question area and show the selection area
+    document.getElementById('selection-area').style.display = 'block';
+    document.getElementById('question-area').style.display = 'none';
+
+    // Reset score and level
+    score = 0;
+    level = 1;
+    document.getElementById('score').textContent = `Score: ${score}`;
+    document.getElementById('level').textContent = `Level: ${level}`;
+    document.getElementById('rating').textContent = "";
+    document.getElementById('feedback').textContent = "";
+    document.getElementById('answer').value = ''; // Clear input field
+
+    // Hide the Go Back button
+    document.getElementById('go-back-button').style.display = 'none';
+});
