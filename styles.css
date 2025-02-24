@@ -1,164 +1,163 @@
+/* Import Kids-Friendly Font */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap');
+
 /* General Styles */
 body {
-    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-family: 'Fredoka', cursive, sans-serif;
     text-align: center;
-    background: linear-gradient(135deg, #FFB6C1, #FF91A4, #FF8C00); 
-    background-size: cover; 
+    background: url('https://source.unsplash.com/1600x900/?cartoon,fruits,colors') no-repeat center center fixed;
+    background-size: cover;
     padding: 20px;
-    background-attachment: fixed; 
-    margin: 0; 
+    margin: 0;
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
-
+/* Container */
 .container {
-    background-color: rgba(255, 255, 255, 0.9); 
-    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
     padding: 30px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
     max-width: 600px;
     margin: auto;
     position: relative;
-    z-index: 2; 
+    z-index: 2;
+    animation: popIn 1s ease-in-out;
 }
 
-
-h1 {
-    font-size: 3em;
-    color: #FF6347;
-    margin-bottom: 20px;
-    font-weight: bold;
-    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3); 
-    animation: bounceIn 1.5s ease infinite; 
-}
-
-
-@keyframes bounceIn {
+/* Kids-Friendly Pop-In Animation */
+@keyframes popIn {
     0% {
-        transform: translateY(-100px);
+        transform: scale(0.8);
         opacity: 0;
     }
-    50% {
-        transform: translateY(30px);
-        opacity: 1;
-    }
     100% {
-        transform: translateY(0);
+        transform: scale(1);
         opacity: 1;
     }
 }
 
-/* Styling for inputs */
-input[type="number"] {
+/* Logo Styling */
+.logo {
+    width: 180px;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Title */
+h1 {
+    font-size: 3em;
+    color: #FF4500;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+    animation: bounce 1.5s infinite ease-in-out;
+}
+
+/* Fun Bouncing Animation */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Input Fields */
+input[type="number"], select {
     padding: 12px;
-    font-size: 1.5em;
-    margin: 12px 0;
-    border: 2px solid #FFD700; 
-    border-radius: 10px;
-    width: 80%;
-    transition: all 0.3s ease;
-}
-
-/* Input focus effect */
-input[type="number"]:focus {
-    border-color: #FF6347; /* Focus border color */
-    outline: none;
-    background-color: #F0E68C; /* Soft yellow background */
-}
-
-/* Styling for buttons */
-button {
-    padding: 14px 30px;
-    background-color: #FF6347;
-    color: white;
     font-size: 1.4em;
-    border: none;
+    margin: 12px 0;
+    border: 3px solid #FFD700;
     border-radius: 12px;
+    width: 85%;
+    transition: all 0.3s ease;
+    background-color: #FFF8DC;
+}
+
+/* Focus Effect */
+input[type="number"]:focus, select:focus {
+    border-color: #FF6347;
+    outline: none;
+    background-color: #F0E68C;
+}
+
+/* Buttons */
+button {
+    padding: 14px 35px;
+    background: linear-gradient(135deg, #FF6347, #FF4500);
+    color: white;
+    font-size: 1.5em;
+    border: none;
+    border-radius: 20px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: all 0.3s ease;
     margin: 15px 0;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
-    background-color: #FF4500; 
-    transform: scale(1.1); 
+    background: linear-gradient(135deg, #FF4500, #FF6347);
+    transform: scale(1.1);
 }
 
 button:focus {
     outline: none;
 }
 
-
+/* Score & Feedback */
 #feedback {
     font-size: 1.5em;
     margin-top: 20px;
     font-weight: bold;
-    color: #32CD32; 
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    color: #32CD32;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
 }
 
 #score {
     font-size: 1.8em;
     margin-top: 20px;
     font-weight: bold;
-    color: #FF1493; 
+    color: #FF1493;
 }
 
 #rating {
     font-size: 1.4em;
     margin-top: 15px;
     font-weight: bold;
-    color: #FFD700; 
+    color: #FFD700;
 }
 
-select {
-    padding: 12px;
-    font-size: 1.3em;
-    margin: 12px 0;
-    border: 2px solid #FFD700;
-    border-radius: 12px;
-    background-color: #FFF8DC;
-    width: 85%;
-    transition: all 0.3s ease;
-}
-
-select:focus {
-    border-color: #FF6347;
-    outline: none;
-    background-color: #F0E68C;
-}
-
-/* Responsive Styles for mobile */
+/* Responsive Styles */
 @media (max-width: 600px) {
     .container {
         width: 90%;
-        padding: 15px;
+        padding: 20px;
     }
 
     h1 {
-        font-size: 2.2em; 
+        font-size: 2.2em;
     }
 
     input[type="number"], button, select {
-        font-size: 1.3em;
+        font-size: 1.2em;
         width: 100%;
     }
 }
 
-
+/* Show Correction Button */
 #show-correction {
-    background-color: #FF7F50; 
+    background: linear-gradient(135deg, #FF7F50, #FF4500);
     margin-top: 15px;
     padding: 12px 25px;
     font-size: 1.3em;
 }
 
 #show-correction:hover {
-    background-color: #FF6347; 
+    background: linear-gradient(135deg, #FF4500, #FF7F50);
 }
 
-.logo {
-    width: 150px; /* Adjust width */
-    height: auto; /* Maintain aspect ratio */
-    display: block;
-    margin: 0 auto; /* Center the image */
-}
