@@ -3,6 +3,7 @@ let correctAnswer;
 let level = 1; // Default level
 let voice = new SpeechSynthesisUtterance();
 let babyVoice = null; // Placeholder for baby voice
+let previousIncorrectAnswer = null; // Store the previous incorrect answer
 
 // Set up baby voice (if available)
 function setBabyVoice() {
@@ -26,7 +27,7 @@ function generateQuestion() {
     let num1 = getRandomNumber(level * 10); // Increase range as level increases
     let num2 = getRandomNumber(level * 10);
     let questionText = '';
-    
+
     switch (mathType) {
         case 'addition':
             correctAnswer = num1 + num2;
@@ -53,7 +54,7 @@ function generateQuestion() {
             correctAnswer = 0;
             questionText = 'Select a math type!';
     }
-    
+
     const questionElement = document.getElementById('question');
     questionElement.textContent = questionText;
 }
@@ -64,7 +65,7 @@ function speak(text) {
     window.speechSynthesis.speak(voice);
 }
 
-document.getElementById('start-button').addEventListener('click', function() {
+document.getElementById('start-button').addEventListener('click', function () {
     // Set the baby voice when the game starts
     setBabyVoice();
 
@@ -88,7 +89,7 @@ document.getElementById('start-button').addEventListener('click', function() {
     document.getElementById('go-back-button').style.display = 'inline-block';
 });
 
-document.getElementById('submit').addEventListener('click', function() {
+document.getElementById('submit').addEventListener('click', function () {
     const userAnswer = parseInt(document.getElementById('answer').value);
     const feedbackElement = document.getElementById('feedback');
     const ratingElement = document.getElementById('rating');
@@ -103,7 +104,7 @@ document.getElementById('submit').addEventListener('click', function() {
         speak("Yay! Correct answer! Good job!");
 
         // Level up after 5 correct answers
-        if (score % 5 === 0 && level < 5) { 
+        if (score % 5 === 0 && level < 5) {
             level++;
             document.getElementById('level').textContent = `Level: ${level}`;
         }
@@ -125,6 +126,9 @@ document.getElementById('submit').addEventListener('click', function() {
         feedbackElement.style.color = "red";
         ratingElement.textContent = "";
 
+        // Store the incorrect answer for later display
+        previousIncorrectAnswer = correctAnswer;
+
         // Speak "Oops, wrong answer"
         speak("Oops, wrong answer! Try again, okay?");
 
@@ -133,24 +137,24 @@ document.getElementById('submit').addEventListener('click', function() {
 
     // Update score
     document.getElementById('score').textContent = `Score: ${score}`;
-    
+
     // Generate a new question
     generateQuestion();
     document.getElementById('answer').value = ''; // Clear the input field
 });
 
 // Show correct answer when "Show Correction" is clicked
-document.getElementById('show-correction').addEventListener('click', function() {
+document.getElementById('show-correction').addEventListener('click', function () {
     const feedbackElement = document.getElementById('feedback');
-    feedbackElement.textContent = `The correct answer was: ${correctAnswer} ✔️`;
+    feedbackElement.textContent = `The correct answer was: ${previousIncorrectAnswer} ✔️`;
     feedbackElement.style.color = "blue";
 
     // Speak the correct answer with the baby voice
-    speak(`The correct answer was: ${correctAnswer}!`);
+    speak(`The correct answer was: ${previousIncorrectAnswer}!`);
 });
 
 // When the user clicks "Go Back", hide the question area and show the operation selection again
-document.getElementById('go-back-button').addEventListener('click', function() {
+document.getElementById('go-back-button').addEventListener('click', function () {
     // Hide the question area and show the selection area
     document.getElementById('selection-area').style.display = 'block';
     document.getElementById('question-area').style.display = 'none';
@@ -167,4 +171,3 @@ document.getElementById('go-back-button').addEventListener('click', function() {
     // Hide the Go Back button
     document.getElementById('go-back-button').style.display = 'none';
 });
-
