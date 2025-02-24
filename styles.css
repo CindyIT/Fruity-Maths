@@ -1,0 +1,10 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background: linear-gradient(135deg, #FFDDC1, #FFABAB); /* Soft and playful gradient */
+    background-size: cover; /* Full screen background */
+    padding: 20px;
+    background-attachment: fixed; /* Parallax effect */
+    margin: 0; /* Remove default margin */
+}
